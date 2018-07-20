@@ -24,14 +24,16 @@ export default class Photo extends Component {
 
           <figcaption>
             <p>{post.caption}</p>
-            <button className="likes">&hearts;{post.likes}</button>
-            <Link className="button" to={`/view/${post.code}`}>
-              <span className="comment-count">
-                <span className="speech-bubble">
-                  {comments[post.code] ? comments[post.code].length : 0}
+            <div className="control-buttons">
+              <button onClick={this.props.increment.bind(null, i)} className="likes">&hearts;{post.likes}</button>
+              <Link className="button" to={`/view/${post.code}`}>
+                <span className="comment-count">
+                  <span className="speech-bubble">
+                    {comments[post.code] ? comments[post.code].length : 0}
+                  </span>
                 </span>
-              </span>
-            </Link>
+              </Link>
+            </div>
           </figcaption>
       </div>
     )
