@@ -6,7 +6,11 @@ export default class Comments extends Component {
       <p>
         <strong>{comment.user}</strong>
         {comment.text}
-        <button className="remove-comment">&times;</button>
+        <button 
+          className="remove-comment" 
+          onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>
+            &times;
+          </button>
       </p>
     </div>
   }
@@ -18,7 +22,14 @@ export default class Comments extends Component {
     const comment = this.refs.comment.value
 
     this.props.addComment(postId, author, comment);
+
+    this.refs.commentForm.reset();
   }
+
+  removeComment() {
+
+  }
+
   render() {
     return (
       <div className="comments">
