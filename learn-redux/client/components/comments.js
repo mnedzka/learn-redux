@@ -1,35 +1,25 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class Comments extends Component {
+const Comments = React.createClass({
   renderComment(comment, i) {
-    <div className="comment" key={i}>
-      <p>
-        <strong>{comment.user}</strong>
-        {comment.text}
-        <button 
-          className="remove-comment" 
-          onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>
-            &times;
-          </button>
-      </p>
-    </div>
-  }
-
+    return (
+      <div className="comment" key={i}>
+        <p>
+          <strong>{comment.user}</strong>
+          {comment.text}
+          <button className="remove-comment" onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>&times;</button>
+        </p>
+      </div>
+    )
+  },
   handleSubmit(e) {
     e.preventDefault();
     const { postId } = this.props.params;
-    const author = this.refs.author.value
-    const comment = this.refs.comment.value
-
+    const author = this.refs.author.value;
+    const comment = this.refs.comment.value;
     this.props.addComment(postId, author, comment);
-
     this.refs.commentForm.reset();
-  }
-
-  removeComment() {
-
-  }
-
+  },
   render() {
     return (
       <div className="comments">
@@ -42,4 +32,6 @@ export default class Comments extends Component {
       </div>
     )
   }
-}
+});
+
+export default Comments;
